@@ -65,8 +65,6 @@ const EditProfile = () => {
     severity: "success" | "error";
   }>({ open: false, message: "", severity: "success" });
 
-  const baseURL = "http://localhost:8080";
-
   useEffect(() => {
     setTimeout(() => {
       setFormData({
@@ -75,7 +73,7 @@ const EditProfile = () => {
         birthday: dayjs(account.birthday),
         address: account.address || "",
         image: account.image || "",
-        preview: `${baseURL}${account.image}` || null,
+        preview: `${account.image}` || null,
       });
     }, 500);
   }, [account]);
@@ -107,7 +105,7 @@ const EditProfile = () => {
           JSON.stringify({
             ...account,
             birthday: dayjs(account.birthday),
-            preview: `${baseURL}${account.image}`,
+            preview: `${account.image}`,
           })
       );
       return newFormData;
@@ -196,7 +194,7 @@ const EditProfile = () => {
                 <Box position="relative" display="inline-block">
                   <Avatar
                     sx={{ width: 150, height: 150, margin: "auto" }}
-                    src={formData.preview || `${baseURL}${account.image}`}
+                    src={formData.preview || `${account.image}`}
                   />
                   <IconButton
                     component="label"
@@ -252,7 +250,7 @@ const EditProfile = () => {
                                 JSON.stringify({
                                   ...account,
                                   birthday: dayjs(account.birthday),
-                                  preview: `${baseURL}${account.image}`,
+                                  preview: `${account.image}`,
                                 })
                             );
                             return newFormData;

@@ -19,8 +19,8 @@ import Animation from "../Animation/BackgroundAnimation";
 import { slideInFromLeft } from "../Animation/SlideAnimation";
 import { Login } from "../../pages/AccountPage";
 import { useNavigate } from "react-router-dom";
-import { postSignIn } from "../../config/api";
 import { useUserStore } from "../../zustand/useUserStore";
+import avt from "../../assets/Users/1735619980418_91131bf3b61c0e42570d.jpg";
 
 const Card = styled(MuiCard)(({ theme }) => ({
   borderRadius: "20px",
@@ -84,47 +84,16 @@ export default function SignIn({ toggleLogin }: Login) {
       });
       return;
     }
-
-    const data = new FormData(event.currentTarget);
-    const email = data.get("email") as string;
-    const password = data.get("password") as string;
-
-    try {
-      const res = await postSignIn(email, password);
-
-      const statusCode = (res as unknown as { statusCode: number }).statusCode;
-      if (statusCode === 200) {
-        login({
-          id: res.data.user.id,
-          email: res.data.user.email,
-          name: res.data.user.name,
-          phoneNumber: res.data.user.phoneNumber,
-          birthday: res.data.user.birthDay,
-          address: res.data.user.address,
-          image: res.data.user.userImage,
-        });
-        console.log({
-          email: data.get("email"),
-          password: data.get("password"),
-        });
-        navigate("/");
-      } else {
-        console.error("Sign-in failed:", res.data.message || "Unknown error");
-        setSnackbar({
-          open: true,
-          message: "Login failed. Please check your email or password.",
-          severity: "error",
-        });
-      }
-    } catch (error) {
-      console.error("An error occurred:", error);
-      setSnackbar({
-        open: true,
-        message:
-          "An error occurred while trying to sign in. Please try again later.",
-        severity: "error",
-      });
-    }
+    login({
+      id: "1",
+      email: "admin@gmail.com",
+      name: "Admin",
+      phoneNumber: "0985796809",
+      birthday: "01/01/2004",
+      address: "Viet Nam",
+      image: avt,
+    });
+    navigate("/");
   };
 
   const validateEmail = () => {

@@ -98,21 +98,9 @@ const Navbar = () => {
   };
 
   const handleLogout = async () => {
-    try {
-      const res = await postLogout();
-      const statusCode = (res as unknown as { statusCode: number }).statusCode;
-
-      if (statusCode === 200) {
-        logout();
-        localStorage.removeItem("access_token");
-        navigate("/");
-        window.location.reload();
-      } else {
-        console.error("Logout failed");
-      }
-    } catch (error) {
-      console.error("An error occurred during logout:", error);
-    }
+    logout();
+    navigate("/");
+    window.location.reload();
   };
 
   const handleSearch = useMemo(() => {

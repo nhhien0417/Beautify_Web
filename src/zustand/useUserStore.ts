@@ -12,7 +12,6 @@ interface UserStore {
 
 // Tạo store với Zustand
 export const useUserStore = create<UserStore>((set) => {
-  // Lấy thông tin người dùng từ localStorage (nếu có)
   const storedUser = localStorage.getItem("user");
   const parsedUser: User | null = storedUser ? JSON.parse(storedUser) : null;
 
@@ -33,7 +32,6 @@ export const useUserStore = create<UserStore>((set) => {
       set({ account: data, isAuthenticated: true });
     },
     logout: () => {
-      // Xóa dữ liệu người dùng khỏi localStorage
       localStorage.removeItem("user");
       set({
         account: {

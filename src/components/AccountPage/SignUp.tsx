@@ -15,7 +15,6 @@ import { Snackbar, Alert } from "@mui/material";
 import Animation from "../Animation/BackgroundAnimation";
 import { slideInFromRight } from "../Animation/SlideAnimation";
 import { Login } from "../../pages/AccountPage";
-import { postSignUp } from "../../config/api";
 import { useNavigate } from "react-router-dom";
 
 const Card = styled(MuiCard)(({ theme }) => ({
@@ -144,43 +143,15 @@ export default function SignUp({ toggleLogin }: Login) {
       return;
     }
 
-    const data = new FormData(event.currentTarget);
-    try {
-      const res = await postSignUp(
-        data.get("name") as string,
-        data.get("email") as string,
-        data.get("password") as string
-      );
-
-      const statusCode = (res as unknown as { statusCode: number }).statusCode;
-      if (statusCode === 500) {
-        setSnackbar({
-          open: true,
-          message: "This email is already in use. Please try another one.",
-          severity: "error",
-        });
-      }
-      if (res.data != null) {
-        // Hiển thị thông báo thành công
-        setSnackbar({
-          open: true,
-          message: "Sign-up successful! Redirecting to Sign In...",
-          severity: "success",
-        });
-
-        // Chuyển hướng về trang SignIn sau 3 giây
-        setTimeout(() => {
-          navigate("/auth");
-          toggleLogin();
-        }, 2000);
-      }
-    } catch (error) {
-      setSnackbar({
-        open: true,
-        message: "An error occurred during sign-up. Please try again.",
-        severity: "error",
-      });
-    }
+    setSnackbar({
+      open: true,
+      message: "Sign-up successful! Redirecting to Sign In...",
+      severity: "success",
+    });
+    setTimeout(() => {
+      navigate("/auth");
+      toggleLogin();
+    }, 2000);
   };
 
   return (

@@ -13,7 +13,6 @@ import {
 import ShopReview, {
   calculateAverageRating,
 } from "../../../entities/ShopReview";
-import defaultImage from "../../../assets/no-image.webp";
 
 const theme = createTheme({
   typography: {
@@ -41,8 +40,6 @@ const StyledCard = styled(Card)(({ theme }) => ({
   margin: "20px",
 }));
 
-const baseURL = "http://localhost:8080";
-
 const ReviewCard = ({ review }: Props) => {
   return (
     <ThemeProvider theme={theme}>
@@ -64,9 +61,7 @@ const ReviewCard = ({ review }: Props) => {
         >
           <CardMedia
             component="img"
-            image={
-              review.user.image ? baseURL + review.user.image : defaultImage
-            }
+            image={review.user.image}
             sx={{
               marginTop: "15px",
               width: "100px",
