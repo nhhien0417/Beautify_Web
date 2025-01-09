@@ -204,8 +204,8 @@ export const sampleShopReviews: ShopReview[] = [
   {
     id: 19,
     user: sampleUsers[0],
-    productQuality: 5,
-    serviceQuality: 5,
+    productQuality: 3,
+    serviceQuality: 2,
     deliveryQuality: 4,
     date: "2024-10-25T00:00:00.000Z",
     title: "Fantastic product and service",

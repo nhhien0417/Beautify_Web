@@ -104,7 +104,7 @@ const Footer = () => {
             }}
           >
             ©2025. Made with <span style={{ color: "#FF6347" }}>❤️</span> by
-            HiHiDuDuDu
+            HiDuDu
           </Typography>
 
           {/* Privacy Policy and Terms */}
