@@ -22,17 +22,3 @@ export const calculateAverageRating = (product: Product): number => {
   );
   return +(totalRatings / product.reviews.length).toFixed(1);
 };
-
-export const brands = [
-  "L'Oréal",
-  "Maybelline",
-  "Estée Lauder",
-  "Clinique",
-  "Dior",
-  "Chanel",
-  "Lancome",
-  "Nivea",
-  "Neutrogena",
-  "MAC",
-  "Dove",
-];
