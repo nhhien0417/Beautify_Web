@@ -174,9 +174,8 @@ const VoucherSelector = ({
                     {formatDiscount(
                       voucher.voucher.discountValue,
                       voucher.voucher.isPercentage
-                    )}
-                    {" "}
-                    ({-voucher.value}$)
+                    )}{" "}
+                    (-{voucher.value.toFixed(2)}$)
                   </Typography>
                 </CardContent>
               </CardActionArea>
