@@ -37,9 +37,9 @@ export const sampleShopReviews: ShopReview[] = [
   {
     id: 4,
     user: sampleUsers[1],
-    productQuality: 5,
+    productQuality: 3,
     serviceQuality: 4,
-    deliveryQuality: 4,
+    deliveryQuality: 2,
     date: "2024-12-18T00:00:00.000Z",
     title: "Perfect product",
     comment:
@@ -49,7 +49,7 @@ export const sampleShopReviews: ShopReview[] = [
   {
     id: 5,
     user: sampleUsers[2],
-    productQuality: 4.5,
+    productQuality: 3,
     serviceQuality: 4,
     deliveryQuality: 3.5,
     date: "2024-12-15T00:00:00.000Z",
@@ -61,9 +61,9 @@ export const sampleShopReviews: ShopReview[] = [
   {
     id: 6,
     user: sampleUsers[3],
-    productQuality: 5,
+    productQuality: 3,
     serviceQuality: 4.5,
-    deliveryQuality: 4.5,
+    deliveryQuality: 1,
     date: "2024-12-10T00:00:00.000Z",
     title: "Fantastic product, bad packaging",
     comment:
@@ -73,7 +73,7 @@ export const sampleShopReviews: ShopReview[] = [
   {
     id: 7,
     user: sampleUsers[4],
-    productQuality: 3.5,
+    productQuality: 3,
     serviceQuality: 3,
     deliveryQuality: 3,
     date: "2024-12-05T00:00:00.000Z",
@@ -86,7 +86,7 @@ export const sampleShopReviews: ShopReview[] = [
     user: sampleUsers[0],
     productQuality: 4.5,
     serviceQuality: 4,
-    deliveryQuality: 4,
+    deliveryQuality: 2,
     date: "2024-11-28T00:00:00.000Z",
     title: "Great product, poor delivery",
     comment: "Product was great, but the delivery service was disappointing.",
@@ -122,7 +122,7 @@ export const sampleShopReviews: ShopReview[] = [
     user: sampleUsers[3],
     productQuality: 5,
     serviceQuality: 5,
-    deliveryQuality: 5,
+    deliveryQuality: 0,
     date: "2024-11-15T00:00:00.000Z",
     title: "Great experience",
     comment: "Fast delivery and beautiful packaging. The product works well.",
@@ -180,7 +180,7 @@ export const sampleShopReviews: ShopReview[] = [
     user: sampleUsers[3],
     productQuality: 2.5,
     serviceQuality: 3,
-    deliveryQuality: 3,
+    deliveryQuality: 1,
     date: "2024-11-01T00:00:00.000Z",
     title: "Good support, but product lacked quality",
     comment:
@@ -193,7 +193,7 @@ export const sampleShopReviews: ShopReview[] = [
     user: sampleUsers[4],
     productQuality: 2.5,
     serviceQuality: 3,
-    deliveryQuality: 4.5,
+    deliveryQuality: 1,
     date: "2024-10-30T00:00:00.000Z",
     title: "Great packaging, bad product",
     comment:
@@ -218,7 +218,7 @@ export const sampleShopReviews: ShopReview[] = [
     user: sampleUsers[1],
     productQuality: 3,
     serviceQuality: 5,
-    deliveryQuality: 4,
+    deliveryQuality: 1,
     date: "2025-01-01T09:51:09.955Z",
     title: "Good service!",
     comment: "The product is okay, but the customer service was excellent.",

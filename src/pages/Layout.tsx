@@ -5,9 +5,7 @@ import Navbar from "../components/Layout/NavBar";
 import Footer from "../components/Layout/Footer";
 import ScrollPage from "../components/Scroll/ScrollPage";
 import useProductStore from "../zustand/useProductStore";
-import useCategoryStore from "../zustand/useCategory";
 import useCartStore from "../zustand/useCartStore";
-import useVoucherStore from "../zustand/useVoucherStore";
 import useSaleTicketStore from "../zustand/useSaleTicketStore";
 
 const Layout = () => {
@@ -16,10 +14,8 @@ const Layout = () => {
   const [navbarHeight, setNavbarHeight] = useState(0);
   const navbarRef = useRef<HTMLDivElement>(null);
 
-  const { fetchCategories } = useCategoryStore();
   const { fetchProducts } = useProductStore();
   const { fetchCart } = useCartStore();
-  const { fetchVouchers } = useVoucherStore();
   const { fetchSaleTickets } = useSaleTicketStore();
 
   useEffect(() => {
@@ -29,10 +25,8 @@ const Layout = () => {
   }, []);
 
   useEffect(() => {
-    fetchCategories();
     fetchProducts();
     fetchCart();
-    fetchVouchers();
     fetchSaleTickets();
   }, []);
 
