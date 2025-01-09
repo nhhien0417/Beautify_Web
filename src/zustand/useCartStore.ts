@@ -1,17 +1,12 @@
 import { create } from "zustand";
 import Product from "../entities/Product";
-import {
-  deleteProductFromCart,
-  getCartByUser,
-  updateQtyItemCart,
-} from "../config/api";
+import { deleteProductFromCart, updateQtyItemCart } from "../config/api";
 import { useUserStore } from "./useUserStore";
 import OrderItem from "../entities/OrderItem";
 
 interface CartState {
   cartItems: OrderItem[];
   selectedItemIds: number[];
-  fetchCart: () => Promise<void>;
   getTotalItems: () => number;
   getUniqueItemsCount: () => number;
   setSelectedItems: (ids: number[]) => void;
@@ -26,51 +21,6 @@ interface CartState {
 const useCartStore = create<CartState>((set, get) => ({
   cartItems: [],
   selectedItemIds: [],
-
-  fetchCart: async () => {
-    const { isAuthenticated, account } = useUserStore.getState();
-    if (!isAuthenticated) return;
-
-    if (account && account.email) {
-      try {
-        const response = await getCartByUser(account.email);
-        const cartData = response.data;
-
-        const mappedProducts = cartData.cartDetails.map(
-          (item: {
-            product: {
-              id: any;
-              name: any;
-              unitPrice: any;
-              productImage: any;
-              quantity: any;
-              detailDescription: any;
-              category: { name: any };
-              brand: any;
-            };
-            quantity: any;
-          }) => ({
-            product: {
-              id: item.product.id,
-              name: item.product.name,
-              price: item.product.unitPrice,
-              images: [`http://localhost:8080${item.product.productImage}`],
-              quantity: item.product.quantity,
-              description: item.product.detailDescription,
-              category: item.product.category.name,
-              brand: item.product.brand,
-            },
-            amount: item.quantity,
-            isSelected: false,
-          })
-        );
-
-        set({ cartItems: mappedProducts });
-      } catch (error) {
-        console.error("Error fetching cart data:", error);
-      }
-    }
-  },
 
   getTotalItems: () =>
     get().cartItems.reduce((acc, item) => acc + item.amount, 0),

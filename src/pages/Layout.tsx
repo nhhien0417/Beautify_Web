@@ -4,8 +4,6 @@ import { Outlet } from "react-router-dom";
 import Navbar from "../components/Layout/NavBar";
 import Footer from "../components/Layout/Footer";
 import ScrollPage from "../components/Scroll/ScrollPage";
-import useCartStore from "../zustand/useCartStore";
-import useSaleTicketStore from "../zustand/useSaleTicketStore";
 
 const Layout = () => {
   const [showNavbar, setShowNavbar] = useState(true);
@@ -13,18 +11,10 @@ const Layout = () => {
   const [navbarHeight, setNavbarHeight] = useState(0);
   const navbarRef = useRef<HTMLDivElement>(null);
 
-  const { fetchCart } = useCartStore();
-  const { fetchSaleTickets } = useSaleTicketStore();
-
   useEffect(() => {
     if (navbarRef.current) {
       setNavbarHeight(navbarRef.current.offsetHeight);
     }
-  }, []);
-
-  useEffect(() => {
-    fetchCart();
-    fetchSaleTickets();
   }, []);
 
   const handleScroll = () => {

@@ -66,8 +66,6 @@ const OrderDetail = ({ saleTicket }: Props) => {
     }
   };
 
-  const baseURL = "http://localhost:8080";
-
   return (
     <ThemeProvider theme={ordersTheme}>
       <Box
@@ -141,11 +139,7 @@ const OrderDetail = ({ saleTicket }: Props) => {
                 >
                   <ListItemAvatar>
                     <Avatar
-                      src={
-                        item.product.productImage.startsWith(baseURL)
-                          ? item.product.productImage
-                          : baseURL + item.product.productImage
-                      }
+                      src={item.product.productImage}
                       alt={item.product.name}
                       sx={{ borderRadius: 1, width: 60, height: 60 }}
                     />

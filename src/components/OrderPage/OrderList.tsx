@@ -23,6 +23,7 @@ const OrdersList: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const pageSize = 5;
   const { saleTickets, totalTickets } = useSaleTicketStore();
+  console.log(saleTickets);
 
   const ordersTheme = createTheme({
     typography: {
