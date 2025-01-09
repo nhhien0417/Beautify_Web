@@ -6,7 +6,6 @@ import Footer from "../components/Layout/Footer";
 import ScrollPage from "../components/Scroll/ScrollPage";
 import useProductStore from "../zustand/useProductStore";
 import useCategoryStore from "../zustand/useCategory";
-import useServiceStore from "../zustand/useServiceStore";
 import useShopReviewStore from "../zustand/useShopReviewStore";
 import useCartStore from "../zustand/useCartStore";
 import useVoucherStore from "../zustand/useVoucherStore";
@@ -21,7 +20,6 @@ const Layout = () => {
   const { fetchCategories } = useCategoryStore();
   const { fetchProducts } = useProductStore();
   const { fetchCart } = useCartStore();
-  const { fetchServices } = useServiceStore();
   const { fetchShopReviews } = useShopReviewStore();
   const { fetchVouchers } = useVoucherStore();
   const { fetchSaleTickets } = useSaleTicketStore();
@@ -36,7 +34,6 @@ const Layout = () => {
     fetchCategories();
     fetchProducts();
     fetchCart();
-    fetchServices();
     fetchShopReviews();
     fetchVouchers();
     fetchSaleTickets();
