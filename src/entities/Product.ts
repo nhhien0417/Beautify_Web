@@ -32,7 +32,8 @@ export const sampleProducts: Product[] = [
     quantity: 2,
     sold: 0,
     brand: "Lancôme",
-    description: "",
+    description:
+      "Part facial sunscreen, part moisturizer, and part makeup primer, this non-greasy, breathable formula absorbs quickly without leaving a white residue behind. It combines SPF 50, vitamin E, moringa extract, and edelweiss to deliver a hydrated, healthy-looking glow while helping prevent sunburn and decreasing the risk of sun-related aging.",
     images: [],
     reviews: [],
   },
@@ -44,7 +45,8 @@ export const sampleProducts: Product[] = [
     quantity: 8,
     sold: 0,
     brand: "Dior",
-    description: "",
+    description:
+      "The formula visibly corrects an uneven complexion, dark spots, pores, redness, dryness, dullness, and wrinkles. Beneath foundation, skin appears more luminous, smoothed, and more beautiful every day. Dreamskin comes in refillable packaging for sustainable use, and individual refills are available separately.",
     images: [],
     reviews: [],
   },
@@ -56,7 +58,8 @@ export const sampleProducts: Product[] = [
     quantity: 4,
     sold: 0,
     brand: "Supergoop!",
-    description: "",
+    description:
+      "Mineral Unseen glides smoothly onto skin and softly blends in sheer for a dream-like feel with expert SPF protection to protect against UV rays. This mineral sunscreen formula is recommended for all skin types, including sensitive. Plus, it doubles as a makeup-gripping primer with a natural finish.",
     images: [],
     reviews: [],
   },
@@ -68,7 +71,8 @@ export const sampleProducts: Product[] = [
     quantity: 4,
     sold: 0,
     brand: "Lancôme",
-    description: "",
+    description:
+      "Powered by bifidus prebiotic and vitamin CG—a water-soluble, stable vitamin C derivative known to be gentle on skin and not as prone to degradation when exposed to air, heat, or light—this serum supports a strong barrier by locking in hydration and defending against external aggressors, including pollution and dry weather. It also tightens the look of skin and visibly improves fine lines for healthy-, radiant-looking skin in just seven days.",
     images: [],
     reviews: [],
   },
@@ -80,7 +84,8 @@ export const sampleProducts: Product[] = [
     quantity: 5,
     sold: 0,
     brand: "Dior",
-    description: "",
+    description:
+      "This hydrating serum is skincare routine essential to target signs of aging. In just one week, skin looks twice as firm. In one month, expression lines, wrinkles, visible pores, unevenness, and loss of elasticity are visibly reduced, while radiance, firmness, and plumpness are visibly enhanced.",
     images: [],
     reviews: [],
   },
@@ -92,7 +97,8 @@ export const sampleProducts: Product[] = [
     quantity: 3,
     sold: 0,
     brand: "Supergoop!",
-    description: "",
+    description:
+      "This restorative oil made with nine powerful, nutrient-dense oils (including bakuchiol, cacay, and amla) and extracts like schisandra fruit and squalane that work together to diminish the appearance of fine lines and wrinkles, improve visible firmness, smooth texture, soften, hydrate, and increase your glow.",
     images: [],
     reviews: [],
   },
@@ -104,7 +110,8 @@ export const sampleProducts: Product[] = [
     quantity: 9,
     sold: 0,
     brand: "Tatcha",
-    description: "",
+    description:
+      "This formula contains lactic acid from Hadasei-3™ and is balanced by squalane and hyaluronic acid—two substances native to skin from birth that diminish with age. Together, these replenishing ingredients work to make your skin look smoother, plumper, and dewier.",
     images: [],
     reviews: [],
   },
@@ -116,7 +123,8 @@ export const sampleProducts: Product[] = [
     quantity: 4,
     sold: 0,
     brand: "Lancôme",
-    description: "",
+    description:
+      "This essence acts as a primer for your skincare and combines four exfoliating acids and hydrating oils to improve skin texture and tone. This 96 percent natural-origin formula combines water and oil in two key phases. The first phase exfoliates and visibly brightens, while the second phase soothes and hydrates skin.",
     images: [],
     reviews: [],
   },
@@ -128,7 +136,8 @@ export const sampleProducts: Product[] = [
     quantity: 5,
     sold: 0,
     brand: "Lancôme",
-    description: "",
+    description:
+      "This night cream restores hydration and radiance for youthful-looking skin while you sleep. It reduces the appearance of fine lines and wrinkles and delivers rich moisture while melting onto skin without a greasy or oily feel.",
     images: [],
     reviews: [],
   },
@@ -140,7 +149,8 @@ export const sampleProducts: Product[] = [
     quantity: 6,
     sold: 0,
     brand: "Lancôme",
-    description: "",
+    description:
+      "An oil-based makeup remover designed with a Bi-Phase formula that's great for sensitive skin or contact lens wearers. The oily phase uses lipid concentrate to lift makeup while the water phase uses emollients to leave skin feeling cleansed. It removes all eye makeup including waterproof.",
     images: [],
     reviews: [],
   },
@@ -152,7 +162,8 @@ export const sampleProducts: Product[] = [
     quantity: 0,
     sold: 0,
     brand: "Lancôme",
-    description: "",
+    description:
+      "La vie est belle, a French expression meaning life is beautiful, is about choosing your own path to happiness and inspiring others. This is a timeless fragrance exclusively crafted by two renowned French perfumers, Anne Flipo and Dominique Ropion, where each spray will unlock a beautiful day.",
     images: [],
     reviews: [],
   },
@@ -164,7 +175,8 @@ export const sampleProducts: Product[] = [
     quantity: 5,
     sold: 0,
     brand: "Dior",
-    description: "",
+    description:
+      "Composed of 90 percent natural-origin ingredients, this gentle cleanser is infused with purifying water lily from the Dior gardens. With a light, airy texture, this two-in-one foaming facial cleanser delivers cleansing and skincare. OFF means purifying, ON means soothing.",
     images: [],
     reviews: [],
   },
@@ -176,7 +188,8 @@ export const sampleProducts: Product[] = [
     quantity: 3,
     sold: 0,
     brand: "Dior",
-    description: "",
+    description:
+      "Powered by a hyaluronic acid duo, this formula targets eight types of face wrinkles: worry lines, frown lines, bunny lines, smile lines, smoker 's lines, marionette lines, tear-trough lines, and crow 's feet lines.",
     images: [],
     reviews: [],
   },
@@ -188,7 +201,8 @@ export const sampleProducts: Product[] = [
     quantity: 6,
     sold: 0,
     brand: "Dior",
-    description: "",
+    description:
+      "An intense and luminous perfume, this contemporary chypre reinvents the original 1947 perfume, curated for the modern spirit. It reflects its time with delectable tones of a jasmine characterized by wild strawberry facets…a fragrance that is excessively round, yet highly architectural",
     images: [],
     reviews: [],
   },
@@ -200,7 +214,8 @@ export const sampleProducts: Product[] = [
     quantity: 5,
     sold: 0,
     brand: "Supergoop!",
-    description: "",
+    description:
+      "This formula sinks in effortlessly, delivering rich hydration with algae extract, ectoin, ceramide, and expert SPF protection. Ideal for normal to dry skin, it protects against dehydrating UV rays while visibly restoring moisture and safeguarding against future damage.",
     images: [],
     reviews: [],
   },
@@ -212,7 +227,8 @@ export const sampleProducts: Product[] = [
     quantity: 5,
     sold: 0,
     brand: "Tatcha",
-    description: "",
+    description:
+      "This sunscreen is powered by potent antioxidants and KLEAIR™ zinc oxide, which is proven to be 2.45 times more effective at protecting against free radicals, which are shown to cause loss of elasticity, fine lines, and wrinkles. KLEAIR is a high-transparency mineral filter that blends more easily into skin.",
     images: [],
     reviews: [],
   },
@@ -224,7 +240,8 @@ export const sampleProducts: Product[] = [
     quantity: 5,
     sold: 0,
     brand: "Tatcha",
-    description: "",
+    description:
+      "Meet the first daily clarifying gel cleanser to purify and prime skin for makeup, without drying, morning and night. This non-stripping formula lathers from gel to refreshing foam to decongest pores for a visibly clear, matte canvas, and reduces makeup slip-off and improves all-day wear by controlling oil.",
     images: [],
     reviews: [],
   },
@@ -236,7 +253,8 @@ export const sampleProducts: Product[] = [
     quantity: 5,
     sold: 0,
     brand: "Tatcha",
-    description: "",
+    description:
+      "The critical first step in caring for sensitive skin is choosing the correct cleanser—one that won’t steal essential moisture or irritate with friction, leaving skin even more vulnerable than before. This fragrance-free formula gently washes away makeup—not moisture—for clean yet calm skin.",
     images: [],
     reviews: [],
   },
@@ -248,7 +266,8 @@ export const sampleProducts: Product[] = [
     quantity: 5,
     sold: 0,
     brand: "Tatcha",
-    description: "",
+    description:
+      "The Dewy Skin Mist's super-fine sprayer only takes two to three spritzes for your whole face. Use right before applying makeup for flawless application and a dewy, glowing look. Take it with you for easy touch-ups on the go to refresh skin and give it an extra glow. You can also mist it over makeup to replenish moisture and prevent caking. It won't disturb makeup, so you can use it anytime, anywhere.s",
     images: [],
     reviews: [],
   },
