@@ -3,7 +3,6 @@ import {
   Box,
   Typography,
   Rating,
-  Divider,
   IconButton,
   Menu,
   MenuItem,
@@ -114,8 +113,7 @@ const ReviewItem = ({ productId, review }: Props) => {
           </Box>
         </Box>
         {/* Menu Button */}
-        {
-          (isAuthenticated && account.id === review.user.id) && (
+        {isAuthenticated && account.id === review.user.id && (
           <IconButton onClick={handleMenuOpen} disabled={isEditing}>
             <MoreVertIcon />
           </IconButton>
@@ -227,25 +225,6 @@ const ReviewItem = ({ productId, review }: Props) => {
           </Typography>
         )}
       </Box>
-
-      {/* Divider */}
-      {review.response && <Divider sx={{ my: 1.5 }} />}
-
-      {/* Response */}
-      {review.response && (
-        <Typography
-          sx={{
-            mt: 1,
-            pl: 2,
-            color: "secondary.main",
-            fontStyle: "italic",
-            borderLeft: 2,
-            borderColor: "secondary.main",
-          }}
-        >
-          {review.response}
-        </Typography>
-      )}
 
       {/* Snackbar */}
       <Snackbar

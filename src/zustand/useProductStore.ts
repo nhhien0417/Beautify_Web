@@ -3,9 +3,6 @@ import Product, { sampleProducts } from "../entities/Product";
 import {
   createCommentProduct,
   deleteProductReview,
-  getAllProductReviewByProduct,
-  getAllProducts,
-  saveInventory,
   updateProductReview,
 } from "../config/api";
 import ProductReview from "../entities/ProductReview";
@@ -24,7 +21,6 @@ interface ProductState {
   filters: Filters;
 
   // Product Handlers
-  fetchProducts: () => Promise<void>;
   addProduct: (product: Product) => void;
   removeProduct: (id: number) => void;
   setProducts: (products: Product[]) => void;
@@ -107,132 +103,6 @@ const useProductStore = create<ProductState>((set) => ({
     brand: [],
     sortOption: "",
     priceRange: [0, -1],
-  },
-
-  fetchProducts: async () => {
-    try {
-      const response = await getAllProducts(1, 100);
-      if (response && response.data && response.data.result) {
-        // Map products with basic details
-        const mappedProducts = response.data.result.map(
-          (item: {
-            id: number;
-            name: string;
-            unitPrice: number;
-            productImage: string;
-            subImage1: string;
-            subImage2: string;
-            subImage3: string;
-            quantity: number;
-            category: { name: string };
-            brand: string;
-            detailDescription: string;
-          }) => ({
-            id: item.id,
-            name: item.name,
-            price: item.unitPrice,
-            brand: item.brand,
-            quantity: item.quantity,
-            category: item.category.name,
-            description: item.detailDescription,
-            images: [
-              `http://localhost:8080${item.productImage}`,
-              `http://localhost:8080${item.subImage1}`,
-              `http://localhost:8080${item.subImage2}`,
-              `http://localhost:8080${item.subImage3}`,
-            ],
-            reviews: [],
-          })
-        );
-
-        const productsWithReviews = await Promise.all(
-          mappedProducts.map(async (product: { id: number; reviews: any }) => {
-            try {
-              const reviewsResponse = await getAllProductReviewByProduct(
-                1,
-                100,
-                product.id
-              );
-              if (
-                reviewsResponse &&
-                reviewsResponse.data &&
-                reviewsResponse.data.result
-              ) {
-                product.reviews = reviewsResponse.data.result
-                  .sort(
-                    (a: any, b: any) =>
-                      new Date(b.date).getTime() - new Date(a.date).getTime()
-                  )
-                  .map((review: any) => ({
-                    id: review.id,
-                    user: {
-                      id: review.user.id,
-                      email: review.user.email,
-                      name: review.user.name,
-                      image: "http://localhost:8080" + review.user.userImage,
-                    },
-                    rating: review.rating,
-                    date: review.date,
-                    summary: review.reviewSummary,
-                    detail: review.detailReview,
-                    response: review.response,
-                  }));
-              }
-            } catch (err) {
-              console.error(
-                `Error fetching reviews for product ${product.id}:`,
-                err
-              );
-            }
-            return product;
-          })
-        );
-
-        const productWithSold = await Promise.all(
-          productsWithReviews.map(async (product) => {
-            try {
-              const currentMonth = new Date().getMonth() + 1;
-              const currentYear = new Date().getFullYear();
-              const soldResponse = await saveInventory(
-                currentMonth,
-                currentYear
-              );
-              if (
-                soldResponse &&
-                soldResponse.data &&
-                soldResponse.data.details
-              ) {
-                const productSold = soldResponse.data.details.find(
-                  (item: any) => item.id == product.id
-                );
-
-                if (productSold) {
-                  product.sold = productSold.totalSold;
-                } else {
-                  product.sold = 0;
-                }
-              }
-            } catch (err) {
-              console.error(
-                `Error fetching sold data for product ${product.id}:`,
-                err
-              );
-            }
-            return product;
-          })
-        );
-
-        set((state) => {
-          const filteredProducts = applyFilters(productWithSold, state.filters);
-          return {
-            products: productWithSold,
-            filteredProducts,
-          };
-        });
-      }
-    } catch (error) {
-      console.error("Error fetching products:", error);
-    }
   },
 
   addProduct: (product) =>

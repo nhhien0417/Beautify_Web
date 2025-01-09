@@ -1,4 +1,4 @@
-import ProductReview from "./ProductReview";
+import ProductReview, { sampleProductReviews } from "./ProductReview";
 
 export default interface Product {
   id: number;
@@ -372,5 +372,10 @@ const assignImagesToProducts = (
   });
 };
 
-const allImages = getAllImages();
-assignImagesToProducts(sampleProducts, allImages);
+assignImagesToProducts(sampleProducts, getAllImages());
+
+sampleProducts.forEach((product) => {
+  product.reviews = sampleProductReviews.filter(
+    (review) => review.product === product.id
+  );
+});
