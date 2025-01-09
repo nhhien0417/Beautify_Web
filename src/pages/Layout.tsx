@@ -4,7 +4,6 @@ import { Outlet } from "react-router-dom";
 import Navbar from "../components/Layout/NavBar";
 import Footer from "../components/Layout/Footer";
 import ScrollPage from "../components/Scroll/ScrollPage";
-import useProductStore from "../zustand/useProductStore";
 import useCartStore from "../zustand/useCartStore";
 import useSaleTicketStore from "../zustand/useSaleTicketStore";
 
@@ -14,7 +13,6 @@ const Layout = () => {
   const [navbarHeight, setNavbarHeight] = useState(0);
   const navbarRef = useRef<HTMLDivElement>(null);
 
-  const { fetchProducts } = useProductStore();
   const { fetchCart } = useCartStore();
   const { fetchSaleTickets } = useSaleTicketStore();
 
@@ -25,7 +23,6 @@ const Layout = () => {
   }, []);
 
   useEffect(() => {
-    fetchProducts();
     fetchCart();
     fetchSaleTickets();
   }, []);

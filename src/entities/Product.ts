@@ -253,3 +253,105 @@ export const sampleProducts: Product[] = [
     reviews: [],
   },
 ];
+
+const getAllImages = (): string[] => {
+  const imageList = [
+    "/src/assets/Products/1735713215410_s2741510-main-zoom.png",
+    "/src/assets/Products/1735713215430_s2741510-av-4-zoom.png",
+    "/src/assets/Products/1735713215444_s2741510-av-7-zoom.png",
+    "/src/assets/Products/1735713215467_s2741510-av-8-zoom.png",
+    "/src/assets/Products/1735713456499_s2145340-main-zoom.png",
+    "/src/assets/Products/1735713456509_s2145340-av-01-zoom.png",
+    "/src/assets/Products/1735713456520_p435806-av-03-zoom.png",
+    "/src/assets/Products/1735713456528_p435806-av-05-zoom.png",
+    "/src/assets/Products/1735713626752_s2773299-main-zoom.webp",
+    "/src/assets/Products/1735713626758_s2773299-av-17-zoom.webp",
+    "/src/assets/Products/1735713626764_s2773299-av-15-zoom.webp",
+    "/src/assets/Products/1735713626769_s2773299-av-14-zoom.webp",
+    "/src/assets/Products/1735713924211_s2291813-main-zoom.webp",
+    "/src/assets/Products/1735713924217_p379510-av-37-zoom.webp",
+    "/src/assets/Products/1735713924223_p379510-av-33-zoom.webp",
+    "/src/assets/Products/1735713924228_p379510-av-35-zoom.webp",
+    "/src/assets/Products/1735714089444_s2642684-main-zoom.webp",
+    "/src/assets/Products/1735714089450_p503999-av-18-zoom.webp",
+    "/src/assets/Products/1735714089457_p503999-av-16-zoom.webp",
+    "/src/assets/Products/1735714089463_p503999-av-17-zoom.webp",
+    "/src/assets/Products/1735714325072_s2433159-main-zoom.webp",
+    "/src/assets/Products/1735714325083_s2433159-av-6-zoom.webp",
+    "/src/assets/Products/1735714325086_s2433159-av-01-zoom.webp",
+    "/src/assets/Products/1735714325092_s2433159-av-02-zoom.webp",
+    "/src/assets/Products/1735714466699_s2406858-main-zoom.webp",
+    "/src/assets/Products/1735714466699_s2406858-av-13-zoom.webp",
+    "/src/assets/Products/1735714466706_s2406858-av-8-zoom.webp",
+    "/src/assets/Products/1735714466712_s2406858-av-01-zoom.webp",
+    "/src/assets/Products/1735714618738_1.webp",
+    "/src/assets/Products/1735714618745_2.webp",
+    "/src/assets/Products/1735714618751_4.webp",
+    "/src/assets/Products/1735714618751_s2742484-av-6-zoom.webp",
+    "/src/assets/Products/1735714726162_1.webp",
+    "/src/assets/Products/1735714726163_2.webp",
+    "/src/assets/Products/1735714726177_3.webp",
+    "/src/assets/Products/1735714726184_4.webp",
+    "/src/assets/Products/1735714821579_1.webp",
+    "/src/assets/Products/1735714821585_2.webp",
+    "/src/assets/Products/1735714821587_3.webp",
+    "/src/assets/Products/1735714821594_4.webp",
+    "/src/assets/Products/1735714917515_1.webp",
+    "/src/assets/Products/1735714917518_2.webp",
+    "/src/assets/Products/1735714917528_3.webp",
+    "/src/assets/Products/1735714917533_4.webp",
+    "/src/assets/Products/1735715036362_1.webp",
+    "/src/assets/Products/1735715036362_p481972-av-10-zoom.webp",
+    "/src/assets/Products/1735715036362_p481972-av-7-zoom.webp",
+    "/src/assets/Products/1735715036362_p481972-av-9-zoom.webp",
+    "/src/assets/Products/1735715212566_s2695021-main-zoom.webp",
+    "/src/assets/Products/1735715212572_s2695021-av-6-zoom.webp",
+    "/src/assets/Products/1735715212579_s2695021-av-3-zoom.webp",
+    "/src/assets/Products/1735715212586_s2695021-av-5-zoom.webp",
+    "/src/assets/Products/1735715359955_s2747194-main-zoom.webp",
+    "/src/assets/Products/1735715359962_s2747194-av-05-zoom.webp",
+    "/src/assets/Products/1735715359969_s2747194-av-02-zoom.webp",
+    "/src/assets/Products/1735715359989_s2747194-av-04-zoom.webp",
+    "/src/assets/Products/1735715542092_s2735017-main-zoom.webp",
+    "/src/assets/Products/1735715542092_s2735017-av-2-zoom.webp",
+    "/src/assets/Products/1735715542102_s2735017-av-5-zoom.webp",
+    "/src/assets/Products/1735715542109_s2735017-av-3-zoom.webp",
+    "/src/assets/Products/1735715754749_s2761708-main-zoom.webp",
+    "/src/assets/Products/1735715754749_s2761708-av-14-zoom.webp",
+    "/src/assets/Products/1735715754763_s2761708-av-12-zoom.webp",
+    "/src/assets/Products/1735715754769_s2761708-av-16-zoom.webp",
+    "/src/assets/Products/1735715845743_s2750065-main-zoom.webp",
+    "/src/assets/Products/1735715845745_s2750065-av-7-zoom.webp",
+    "/src/assets/Products/1735715845750_s2750065-av-2-zoom.webp",
+    "/src/assets/Products/1735715845757_s2750065-av-5-zoom.webp",
+    "/src/assets/Products/1735715941315_s2846012-av-3-zoom.webp",
+    "/src/assets/Products/1735715941332_s2846012-av-1-zoom.webp",
+    "/src/assets/Products/1735715941332_s2846012-av-6-zoom.webp",
+    "/src/assets/Products/1735715941346_s2846012-av-5-zoom.webp",
+    "/src/assets/Products/1735716039818_s1742337-main-zoom.webp",
+    "/src/assets/Products/1735716039818_s1742337-av-9-zoom.webp",
+    "/src/assets/Products/1735716039824_s1742337-av-4-zoom.webp",
+    "/src/assets/Products/1735716039831_s1742337-av-7-zoom.webp",
+  ];
+  return imageList;
+};
+
+const assignImagesToProducts = (
+  products: Product[],
+  images: string[]
+): void => {
+  const numberOfImagesPerProduct = 4;
+  let imageIndex = 0;
+
+  products.forEach((product) => {
+    const productImages = images.slice(
+      imageIndex,
+      imageIndex + numberOfImagesPerProduct
+    );
+    product.images = productImages;
+    imageIndex += numberOfImagesPerProduct;
+  });
+};
+
+const allImages = getAllImages();
+assignImagesToProducts(sampleProducts, allImages);
