@@ -2,7 +2,6 @@ import { createBrowserRouter } from "react-router-dom";
 import ErrorPage from "../pages/NotFoundPage";
 import Layout from "../pages/Layout";
 import HomePage from "../pages/HomePage";
-import AdminPage from "../pages/AdminPage";
 import AccountPage from "../pages/AccountPage";
 import ProductPage from "../pages/ProductPage";
 import ProductDetailPage from "../pages/ProductDetailPage";
@@ -15,7 +14,6 @@ import OrdersPage from "../pages/OrderPage";
 import OrderDetailPage from "../pages/OrderDetailPage";
 import EditProfilePage from "../pages/ProfilePage";
 import ForbiddenPage from "../pages/ForbiddenPage";
-import ProtectedRoute from "./protectedRouter";
 import ChangePasswordPage from "../components/EditProfilePage/ChangePasswordPage";
 
 const router = createBrowserRouter([
@@ -51,56 +49,27 @@ const router = createBrowserRouter([
       },
       {
         path: "checkout",
-        element: (
-          <ProtectedRoute>
-            <CheckoutPage />
-          </ProtectedRoute>
-        ),
+        element: <CheckoutPage />,
       },
       {
         path: "orders",
-        element: (
-          <ProtectedRoute>
-            <OrdersPage />
-          </ProtectedRoute>
-        ),
+        element: <OrdersPage />,
       },
       {
         path: "orders/:orderId",
-        element: (
-          <ProtectedRoute>
-            <OrderDetailPage />,
-          </ProtectedRoute>
-        ),
+        element: <OrderDetailPage />,
       },
       {
         path: "info",
-        element: (
-          <ProtectedRoute>
-            <EditProfilePage />
-          </ProtectedRoute>
-        ),
+        element: <EditProfilePage />,
         children: [
           {
             path: "changepassword",
-            element: (
-              <ProtectedRoute>
-                <ChangePasswordPage />
-              </ProtectedRoute>
-            ),
+            element: <ChangePasswordPage />,
           },
         ],
       },
     ],
-  },
-  {
-    path: "/admin",
-    errorElement: <ErrorPage />,
-    element: (
-      <ProtectedRoute expectPage="admin">
-        <AdminPage />
-      </ProtectedRoute>
-    ),
   },
   {
     path: "/auth",

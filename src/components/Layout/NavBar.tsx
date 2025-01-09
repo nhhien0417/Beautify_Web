@@ -25,7 +25,6 @@ import {
   Person,
   Menu as MenuIcon,
   Logout,
-  Help,
   LocalMall,
   AccountBox,
 } from "@mui/icons-material";
@@ -43,7 +42,7 @@ const Navbar = () => {
   const theme = useTheme();
   const { products } = useProductStore();
   const { services } = useServiceStore();
-  const { isAuthenticated, logout, account } = useUserStore();
+  const { isAuthenticated, logout } = useUserStore();
 
   const [searchQuery, setSearchQuery] = useState("");
   const [showSearchList, setShowSearchList] = useState(false);
@@ -87,10 +86,6 @@ const Navbar = () => {
   const handleMenuClose = () => {
     setMenuAnchor(null);
     window.removeEventListener("scroll", handleMenuClose);
-  };
-
-  const handleLinkToAdmin = () => {
-    navigate("/admin");
   };
 
   const handleLinkToEditInfo = () => {
@@ -369,17 +364,6 @@ const Navbar = () => {
                   ml: -1.5,
                 }}
               >
-                {account.role.name !== "CUSTOMER" && (
-                  <MenuItem onClick={handleLinkToAdmin}>
-                    <ListItemIcon>
-                      <Help
-                        fontSize="small"
-                        style={{ color: theme.palette.primary.dark }}
-                      />
-                    </ListItemIcon>
-                    Admin
-                  </MenuItem>
-                )}
                 <MenuItem onClick={handleLinkToOrders}>
                   <ListItemIcon>
                     <LocalMall

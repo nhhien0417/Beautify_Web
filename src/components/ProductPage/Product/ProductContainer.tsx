@@ -1,6 +1,5 @@
-import { Box, ThemeProvider } from "@mui/material";
+import { Box } from "@mui/material";
 import { ReactNode } from "react";
-import { defaultTheme } from "../../AdminPage/Admin/Sidebar";
 
 interface Props {
   children: ReactNode;
@@ -8,21 +7,19 @@ interface Props {
 
 const ProductContainer = ({ children }: Props) => {
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <Box
-        sx={{
-          mixBlendMode: "multiply",
-          "&:hover": {
-            transform: "scale(1.03)",
-            transition: "transform 0.15s ease-in",
-          },
-          borderRadius: 2,
-          overflow: "hidden",
-        }}
-      >
-        {children}
-      </Box>
-    </ThemeProvider>
+    <Box
+      sx={{
+        mixBlendMode: "multiply",
+        "&:hover": {
+          transform: "scale(1.03)",
+          transition: "transform 0.15s ease-in",
+        },
+        borderRadius: 2,
+        overflow: "hidden",
+      }}
+    >
+      {children}
+    </Box>
   );
 };
 
