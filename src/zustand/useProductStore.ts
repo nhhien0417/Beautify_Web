@@ -169,7 +169,6 @@ const useProductStore = create<ProductState>((set) => ({
                       id: review.user.id,
                       email: review.user.email,
                       name: review.user.name,
-                      role: review.user.role,
                       image: "http://localhost:8080" + review.user.userImage,
                     },
                     rating: review.rating,

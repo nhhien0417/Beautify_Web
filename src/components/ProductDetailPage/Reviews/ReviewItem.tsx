@@ -114,8 +114,8 @@ const ReviewItem = ({ productId, review }: Props) => {
           </Box>
         </Box>
         {/* Menu Button */}
-        {(account.role.name === "ADMIN" ||
-          (isAuthenticated && account.id === review.user.id)) && (
+        {
+          (isAuthenticated && account.id === review.user.id) && (
           <IconButton onClick={handleMenuOpen} disabled={isEditing}>
             <MoreVertIcon />
           </IconButton>

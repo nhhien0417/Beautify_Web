@@ -96,14 +96,11 @@ export default function SignIn({ toggleLogin }: Login) {
       if (statusCode === 200) {
         login({
           id: res.data.user.id,
-          access_token: res.data.access_token,
-          refresh_token: res.data.refresh_token,
           email: res.data.user.email,
           name: res.data.user.name,
           phoneNumber: res.data.user.phoneNumber,
           birthday: res.data.user.birthDay,
           address: res.data.user.address,
-          role: res.data.user.role,
           image: res.data.user.userImage,
         });
         console.log({

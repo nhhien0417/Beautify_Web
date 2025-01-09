@@ -22,8 +22,6 @@ interface ReviewCardProps {
   review: ShopReview;
 }
 
-const baseURL = "http://localhost:8080";
-
 const ReviewCard = ({ review }: ReviewCardProps) => {
   const [isEditing, setIsEditing] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -130,7 +128,7 @@ const ReviewCard = ({ review }: ReviewCardProps) => {
         mb={1}
       >
         <Box display="flex" alignItems="center" gap={2}>
-          <Avatar src={baseURL + review.user.image} />
+          <Avatar src={review.user.image} />
           <Typography variant="subtitle1" fontWeight="bold">
             {review.user.name}
           </Typography>
@@ -139,8 +137,7 @@ const ReviewCard = ({ review }: ReviewCardProps) => {
           </Typography>
         </Box>
 
-        {(account.role.name === "ADMIN" ||
-          (isAuthenticated && review.user.id === account.id)) && (
+        {isAuthenticated && review.user.id === account.id && (
           <IconButton onClick={handleMenuOpen} disabled={isEditing}>
             <MoreHorizRounded />
           </IconButton>
@@ -313,77 +310,74 @@ const ReviewCard = ({ review }: ReviewCardProps) => {
       )}
 
       {/* Response Section */}
-      {isAuthenticated && account.role.name === "ADMIN" ? (
-        response && !isEditingResponse ? (
-          <Box
-            mt={2}
-            p={1}
-            bgcolor="#D8C4B6"
-            borderRadius={1}
-            display="flex"
-            alignItems="center"
+      {response && !isEditingResponse ? (
+        <Box
+          mt={2}
+          p={1}
+          bgcolor="#D8C4B6"
+          borderRadius={1}
+          display="flex"
+          alignItems="center"
+        >
+          <Typography
+            fontWeight="bold"
+            variant="body2"
+            color="textSecondary"
+            sx={{ flexGrow: 1 }}
           >
-            <Typography
-              fontWeight="bold"
-              variant="body2"
-              color="textSecondary"
-              sx={{ flexGrow: 1 }}
-            >
-              Response: {response}
-            </Typography>
-            <IconButton
-              size="small"
-              onClick={() => setIsEditingResponse(true)}
-              sx={{ ml: 1 }}
-            >
-              <EditIcon fontSize="small" />
-            </IconButton>
-          </Box>
-        ) : isEditingResponse ? (
-          <Box mt={2}>
-            <TextField
-              placeholder="Edit your response..."
-              fullWidth
-              multiline
-              rows={2}
-              variant="outlined"
-              value={tempResponse}
-              onChange={(e) => setTempResponse(e.target.value)}
-            />
-            <Button
-              variant="contained"
-              color="warning"
-              size="small"
-              onClick={handleSaveResponse}
-              sx={{ mt: 1 }}
-            >
-              Save
-            </Button>
-            <Button
-              size="small"
-              onClick={() => setIsEditingResponse(false)}
-              sx={{ mt: 1, ml: 1 }}
-            >
-              Cancel
-            </Button>
-          </Box>
-        ) : (
-          <Button
-            variant="contained"
+            Response: {response}
+          </Typography>
+          <IconButton
             size="small"
             onClick={() => setIsEditingResponse(true)}
-            sx={{
-              fontWeight: "bold",
-              mt: 2,
-              backgroundColor: "#D39D55",
-              ":hover": { backgroundColor: "#489C7E" },
-            }}
+            sx={{ ml: 1 }}
           >
-            Add Response
+            <EditIcon fontSize="small" />
+          </IconButton>
+        </Box>
+      ) : isEditingResponse ? (
+        <Box mt={2}>
+          <TextField
+            placeholder="Edit your response..."
+            fullWidth
+            multiline
+            rows={2}
+            variant="outlined"
+            value={tempResponse}
+            onChange={(e) => setTempResponse(e.target.value)}
+          />
+          <Button
+            variant="contained"
+            color="warning"
+            size="small"
+            onClick={handleSaveResponse}
+            sx={{ mt: 1 }}
+          >
+            Save
           </Button>
-        )
-      ) : // Render nothing or a placeholder if the user is not an admin
-      null}
+          <Button
+            size="small"
+            onClick={() => setIsEditingResponse(false)}
+            sx={{ mt: 1, ml: 1 }}
+          >
+            Cancel
+          </Button>
+        </Box>
+      ) : (
+        <Button
+          variant="contained"
+          size="small"
+          onClick={() => setIsEditingResponse(true)}
+          sx={{
+            fontWeight: "bold",
+            mt: 2,
+            backgroundColor: "#D39D55",
+            ":hover": { backgroundColor: "#489C7E" },
+          }}
+        >
+          Add Response
+        </Button>
+      )}
 
       {/* Snackbar */}
       <Snackbar

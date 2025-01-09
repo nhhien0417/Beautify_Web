@@ -1,9 +1,11 @@
 import { create } from "zustand";
-import ShopReview, { calculateAverageRating } from "../entities/ShopReview";
+import ShopReview, {
+  calculateAverageRating,
+  sampleShopReviews,
+} from "../entities/ShopReview";
 import {
   createCommentStore,
   deleteStoreReview,
-  getAllCommentStore,
   responseComment,
   updateStoreReview,
 } from "../config/api";
@@ -11,7 +13,6 @@ import {
 interface ReviewStoreState {
   reviews: ShopReview[];
   filteredReviews: ShopReview[];
-  fetchShopReviews: () => Promise<void>;
   addReview: (review: ShopReview) => void;
   setReviews: (reviews: ShopReview[]) => void;
   filterReviewsByRating: (rating: number) => void;
@@ -21,37 +22,8 @@ interface ReviewStoreState {
 }
 
 const useShopReviewStore = create<ReviewStoreState>((set) => ({
-  reviews: [],
-  filteredReviews: [],
-
-  fetchShopReviews: async () => {
-    try {
-      const response = await getAllCommentStore(1, 100);
-      if (response && response.data && response.data.result) {
-        const mappedReviews = response.data.result.map((item: any) => ({
-          id: item.id,
-          user: {
-            id: item.user.id,
-            image: item.user.userImage,
-            name: item.user.name,
-          },
-          productQuality: item.productQuality,
-          serviceQuality: item.serviceQuality,
-          deliveryQuality: item.deliveryQuality,
-          date: item.date,
-          title: item.title,
-          comment: item.comment,
-          response: item.response,
-        }));
-        set(() => ({
-          reviews: mappedReviews,
-          filteredReviews: mappedReviews,
-        }));
-      }
-    } catch (err) {
-      console.error("Error fetching reviews:", err);
-    }
-  },
+  reviews: sampleShopReviews,
+  filteredReviews: sampleShopReviews,
 
   setReviews: (reviews) =>
     set(() => ({
