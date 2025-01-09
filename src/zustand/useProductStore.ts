@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import Product from "../entities/Product";
+import Product, { sampleProducts } from "../entities/Product";
 import {
   createCommentProduct,
   deleteProductReview,
@@ -99,8 +99,8 @@ const applyFilters = (products: Product[], filters: Filters): Product[] => {
 };
 
 const useProductStore = create<ProductState>((set) => ({
-  products: [],
-  filteredProducts: [],
+  products: sampleProducts,
+  filteredProducts: sampleProducts,
   filters: {
     searchQuery: "",
     category: "",
