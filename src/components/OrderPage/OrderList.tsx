@@ -23,7 +23,21 @@ const OrdersList: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const pageSize = 5;
   const { saleTickets, totalTickets } = useSaleTicketStore();
-  console.log(saleTickets);
+  const sortTickets = saleTickets.sort((a, b) => {
+    const statusOrder: {
+      [key in "PREPARING" | "DELIVERING" | "COMPLETED"]: number;
+    } = { PREPARING: 1, DELIVERING: 2, COMPLETED: 3 };
+    if (
+      statusOrder[a.status as "PREPARING" | "DELIVERING" | "COMPLETED"] !==
+      statusOrder[b.status as "PREPARING" | "DELIVERING" | "COMPLETED"]
+    ) {
+      return (
+        statusOrder[a.status as "PREPARING" | "DELIVERING" | "COMPLETED"] -
+        statusOrder[b.status as "PREPARING" | "DELIVERING" | "COMPLETED"]
+      );
+    }
+    return new Date(b.date).getTime() - new Date(a.date).getTime();
+  });
 
   const ordersTheme = createTheme({
     typography: {
@@ -38,7 +52,7 @@ const OrdersList: React.FC = () => {
   // Tính toán các đơn hàng cần hiển thị cho trang hiện tại
   const startIndex = (currentPage - 1) * pageSize;
   const endIndex = startIndex + pageSize;
-  const currentOrders = saleTickets.slice(startIndex, endIndex);
+  const currentOrders = sortTickets.slice(startIndex, endIndex);
 
   return (
     <ThemeProvider theme={ordersTheme}>
