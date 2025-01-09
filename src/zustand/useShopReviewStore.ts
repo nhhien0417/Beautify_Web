@@ -3,12 +3,6 @@ import ShopReview, {
   calculateAverageRating,
   sampleShopReviews,
 } from "../entities/ShopReview";
-import {
-  createCommentStore,
-  deleteStoreReview,
-  responseComment,
-  updateStoreReview,
-} from "../config/api";
 
 interface ReviewStoreState {
   reviews: ShopReview[];
@@ -39,79 +33,41 @@ const useShopReviewStore = create<ReviewStoreState>((set) => ({
     })),
 
   addReview: async (review) => {
-    try {
-      await createCommentStore(
-        review.user.email,
-        review.productQuality,
-        review.serviceQuality,
-        review.deliveryQuality,
-        review.title,
-        review.comment,
-        review.date
-      );
-
-      set((state) => ({
-        reviews: [review, ...state.reviews],
-        filteredReviews: [review, ...state.reviews],
-      }));
-    } catch (error) {
-      console.error("Error adding review:", error);
-    }
+    set((state) => ({
+      reviews: [review, ...state.reviews],
+      filteredReviews: [review, ...state.reviews],
+    }));
   },
 
   deleteReview: async (id) => {
-    try {
-      await deleteStoreReview(id);
-      set((state) => ({
-        reviews: state.reviews.filter((review) => review.id !== id),
-        filteredReviews: state.filteredReviews.filter(
-          (review) => review.id !== id
-        ),
-      }));
-    } catch (error) {
-      console.error("Error deleting review:", error);
-    }
+    set((state) => ({
+      reviews: state.reviews.filter((review) => review.id !== id),
+      filteredReviews: state.filteredReviews.filter(
+        (review) => review.id !== id
+      ),
+    }));
   },
 
   updateReview: async (updatedReview) => {
-    try {
-      await updateStoreReview(
-        updatedReview.id,
-        updatedReview.productQuality,
-        updatedReview.serviceQuality,
-        updatedReview.deliveryQuality,
-        updatedReview.title,
-        updatedReview.comment
-      );
-      set((state) => ({
-        reviews: state.reviews.map((review) =>
-          review.id === updatedReview.id ? updatedReview : review
-        ),
-        filteredReviews: state.filteredReviews.map((review) =>
-          review.id === updatedReview.id ? updatedReview : review
-        ),
-      }));
-    } catch (error) {
-      console.error("Error updating review:", error);
-    }
+    set((state) => ({
+      reviews: state.reviews.map((review) =>
+        review.id === updatedReview.id ? updatedReview : review
+      ),
+      filteredReviews: state.filteredReviews.map((review) =>
+        review.id === updatedReview.id ? updatedReview : review
+      ),
+    }));
   },
 
   addResponse: async (id, response) => {
-    try {
-      const res = await responseComment(id, response);
-      console.log(res);
-
-      set((state) => ({
-        reviews: state.reviews.map((review) =>
-          review.id === id ? { ...review, response } : review
-        ),
-        filteredReviews: state.filteredReviews.map((review) =>
-          review.id === id ? { ...review, response } : review
-        ),
-      }));
-    } catch (error) {
-      console.error("Error adding response:", error);
-    }
+    set((state) => ({
+      reviews: state.reviews.map((review) =>
+        review.id === id ? { ...review, response } : review
+      ),
+      filteredReviews: state.filteredReviews.map((review) =>
+        review.id === id ? { ...review, response } : review
+      ),
+    }));
   },
 }));
 

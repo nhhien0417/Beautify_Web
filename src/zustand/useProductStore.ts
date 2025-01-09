@@ -1,10 +1,5 @@
 import { create } from "zustand";
 import Product, { sampleProducts } from "../entities/Product";
-import {
-  createCommentProduct,
-  deleteProductReview,
-  updateProductReview,
-} from "../config/api";
 import ProductReview from "../entities/ProductReview";
 
 interface Filters {
@@ -214,90 +209,60 @@ const useProductStore = create<ProductState>((set) => ({
     })),
 
   addReview: async (productId, review) => {
-    try {
-      await createCommentProduct(
-        productId,
-        review.user.email,
-        review.summary,
-        review.detail,
-        review.date,
-        review.rating
-      );
-
-      set((state) => {
-        const updatedProducts = state.products.map((product) => {
-          if (product.id === productId) {
-            return {
-              ...product,
-              reviews: [review, ...(product.reviews || [])],
-            };
-          }
-          return product;
-        });
-
-        return {
-          products: updatedProducts,
-          filteredProducts: applyFilters(updatedProducts, state.filters),
-        };
+    set((state) => {
+      const updatedProducts = state.products.map((product) => {
+        if (product.id === productId) {
+          return {
+            ...product,
+            reviews: [review, ...(product.reviews || [])],
+          };
+        }
+        return product;
       });
-    } catch (error) {
-      console.error("Error adding review:", error);
-    }
+
+      return {
+        products: updatedProducts,
+        filteredProducts: applyFilters(updatedProducts, state.filters),
+      };
+    });
   },
 
   removeReview: async (productId, reviewId) => {
-    try {
-      await deleteProductReview(reviewId);
-
-      set((state) => {
-        const updatedProducts = state.products.map((product) => {
-          if (product.id === productId) {
-            const updatedReviews = product.reviews?.filter(
-              (review) => review.id !== reviewId
-            );
-            return { ...product, reviews: updatedReviews };
-          }
-          return product;
-        });
-
-        return {
-          products: updatedProducts,
-          filteredProducts: applyFilters(updatedProducts, state.filters),
-        };
+    set((state) => {
+      const updatedProducts = state.products.map((product) => {
+        if (product.id === productId) {
+          const updatedReviews = product.reviews?.filter(
+            (review) => review.id !== reviewId
+          );
+          return { ...product, reviews: updatedReviews };
+        }
+        return product;
       });
-    } catch (error) {
-      console.error("Error removing review:", error);
-    }
+
+      return {
+        products: updatedProducts,
+        filteredProducts: applyFilters(updatedProducts, state.filters),
+      };
+    });
   },
 
   editReview: async (productId, reviewId, updatedReview) => {
-    try {
-      await updateProductReview(
-        reviewId,
-        updatedReview.rating ?? 0,
-        updatedReview.detail ?? "",
-        updatedReview.summary ?? ""
-      );
-
-      set((state) => {
-        const updatedProducts = state.products.map((product) => {
-          if (product.id === productId) {
-            const updatedReviews = product.reviews?.map((review) =>
-              review.id === reviewId ? { ...review, ...updatedReview } : review
-            );
-            return { ...product, reviews: updatedReviews };
-          }
-          return product;
-        });
-
-        return {
-          products: updatedProducts,
-          filteredProducts: applyFilters(updatedProducts, state.filters),
-        };
+    set((state) => {
+      const updatedProducts = state.products.map((product) => {
+        if (product.id === productId) {
+          const updatedReviews = product.reviews?.map((review) =>
+            review.id === reviewId ? { ...review, ...updatedReview } : review
+          );
+          return { ...product, reviews: updatedReviews };
+        }
+        return product;
       });
-    } catch (error) {
-      console.error("Error editing review:", error);
-    }
+
+      return {
+        products: updatedProducts,
+        filteredProducts: applyFilters(updatedProducts, state.filters),
+      };
+    });
   },
 }));
 

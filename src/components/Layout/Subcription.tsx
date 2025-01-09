@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { Box, Typography, Button, TextField } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { sendEmailThankYou } from "../../config/api";
-import { useUserStore } from "../../zustand/useUserStore";
 
 const theme = createTheme({
   typography: {
@@ -14,14 +12,8 @@ const theme = createTheme({
 const Subscription = () => {
   const [email, setEmail] = useState(""); // Biến để lưu thông tin email
   const [submitted, setSubmitted] = useState(false);
-  const { account, isAuthenticated } = useUserStore();
 
   const handleSubmit = async () => {
-    if (!isAuthenticated) {
-      await sendEmailThankYou(email, account?.name || "Customer");
-    } else {
-      await sendEmailThankYou(email, account.name);
-    }
     setSubmitted(true);
   };
 

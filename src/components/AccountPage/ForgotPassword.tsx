@@ -8,7 +8,6 @@ import {
   DialogTitle,
   OutlinedInput,
 } from "@mui/material";
-import { sendEmailForgotPassword } from "../../config/api";
 
 interface Props {
   open: boolean;
@@ -24,15 +23,6 @@ export default function ForgotPassword({ open, handleClose }: Props) {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    try {
-      await sendEmailForgotPassword(email);
-      alert("A reset link has been sent to your email address.");
-      setEmail("");
-      handleClose();
-    } catch (error) {
-      console.error("Error sending reset link:", error);
-      alert("Failed to send reset link. Please try again.");
-    }
   };
 
   return (

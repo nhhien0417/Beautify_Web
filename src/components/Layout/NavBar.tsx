@@ -32,7 +32,6 @@ import { Link, useNavigate } from "react-router-dom";
 import useCartStore from "../../zustand/useCartStore";
 import logo from "../../assets/AppIcon.jpg";
 import Cart from "../CartPage/Cart";
-import { postLogout } from "../../config/api";
 import { useUserStore } from "../../zustand/useUserStore";
 import SearchList from "./SearchList";
 import useProductStore from "../../zustand/useProductStore";

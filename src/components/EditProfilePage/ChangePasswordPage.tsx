@@ -14,8 +14,6 @@ import {
 } from "@mui/material";
 import { Lock, Visibility, VisibilityOff } from "@mui/icons-material";
 import { Link, useNavigate } from "react-router-dom";
-import { changePassword } from "../../config/api";
-import { useUserStore } from "../../zustand/useUserStore";
 
 const ChangePasswordPage: React.FC = () => {
   const [currentPassword, setCurrentPassword] = useState("");
@@ -28,7 +26,6 @@ const ChangePasswordPage: React.FC = () => {
     "success"
   );
 
-  const { account } = useUserStore();
   const navigate = useNavigate();
 
   const handleShowPassword = () => {
@@ -56,29 +53,10 @@ const ChangePasswordPage: React.FC = () => {
       return;
     }
 
-    try {
-      const res = await changePassword(
-        account.email,
-        currentPassword,
-        confirmPassword
-      );
-      const statusCode = (res as unknown as { statusCode: number }).statusCode;
-      if (statusCode === 200) {
-        setSnackbarMessage("Password changed successfully!");
-        setSnackbarSeverity("success");
-        setSnackbarOpen(true);
-        navigate("/info");
-      } else {
-        setSnackbarMessage("Current password is incorrect.");
-        setSnackbarSeverity("error");
-        setSnackbarOpen(true);
-      }
-    } catch (error) {
-      setSnackbarMessage("An error occurred. Please try again.");
-      setSnackbarSeverity("error");
-      setSnackbarOpen(true);
-      console.error(error);
-    }
+    setSnackbarMessage("Password changed successfully!");
+    setSnackbarSeverity("success");
+    setSnackbarOpen(true);
+    navigate("/info");
   };
 
   return (

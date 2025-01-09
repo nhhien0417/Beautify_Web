@@ -15,7 +15,6 @@ import PhoneIcon from "@mui/icons-material/Phone";
 import EventIcon from "@mui/icons-material/Event";
 import DescriptionIcon from "@mui/icons-material/Description";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
-import { bookServiceClient } from "../../config/api";
 import User from "../../entities/User";
 import { formatDate } from "../../services/date";
 
@@ -75,21 +74,6 @@ const ServiceForm: React.FC<BookingFormProps> = ({
 
   // Xử lý xác nhận đặt lịch
   const handleConfirm = async () => {
-    try {
-      const { name, phoneNumber, appointmentDate } = formData;
-      const res = await bookServiceClient(
-        +userInfo.id, // Đảm bảo rằng ID người dùng được định dạng đúng
-        name,
-        phoneNumber,
-        appointmentDate,
-        serviceName,
-        servicePrice
-      );
-
-      console.log("Booking successful:", res);
-    } catch (error) {
-      console.error("Error booking service:", error);
-    }
     onClose(); // Đóng form sau khi hoàn thành
   };
 

@@ -1,7 +1,5 @@
 import { create } from "zustand";
 import Product from "../entities/Product";
-import { deleteProductFromCart, updateQtyItemCart } from "../config/api";
-import { useUserStore } from "./useUserStore";
 import OrderItem from "../entities/OrderItem";
 
 interface CartState {
@@ -33,8 +31,6 @@ const useCartStore = create<CartState>((set, get) => ({
     })),
 
   addToCart: async (product: Product, quantity: number = 1) => {
-    const { account } = useUserStore.getState();
-
     try {
       set((state) => {
         const existingItem = state.cartItems.find(
@@ -47,10 +43,6 @@ const useCartStore = create<CartState>((set, get) => ({
           product.quantity < quantity + currentCartQuantity
             ? product.quantity - currentCartQuantity
             : quantity;
-
-        if (quantityActual > 0) {
-          updateQtyItemCart(account.email, product.id, quantityActual);
-        }
 
         if (existingItem) {
           return {
@@ -74,62 +66,46 @@ const useCartStore = create<CartState>((set, get) => ({
     }
   },
 
-  removeFromCart: async (id: number, quantity: number = 1) => {
-    const { account } = useUserStore.getState();
+  removeFromCart: async (id: number) => {
+    set((state) => {
+      let updatedCartItems = state.cartItems.filter(
+        (item) => item.product.id !== id
+      );
 
-    try {
-      await updateQtyItemCart(account.email, id, -quantity);
+      updatedCartItems = state.cartItems.map((item) =>
+        item.product.id === id && item.amount > 1
+          ? { ...item, amount: item.amount - 1 }
+          : item
+      );
 
-      set((state) => {
-        let updatedCartItems = state.cartItems.filter(
-          (item) => item.product.id !== id
-        );
+      const updatedSelectedItemIds = state.selectedItemIds.filter(
+        (itemId) => itemId !== id
+      );
 
-        updatedCartItems = state.cartItems.map((item) =>
-          item.product.id === id && item.amount > 1
-            ? { ...item, amount: item.amount - 1 }
-            : item
-        );
+      const itemExistsInCart = updatedCartItems.some(
+        (item) => item.product.id === id
+      );
 
-        const updatedSelectedItemIds = state.selectedItemIds.filter(
-          (itemId) => itemId !== id
-        );
-
-        const itemExistsInCart = updatedCartItems.some(
-          (item) => item.product.id === id
-        );
-
-        return {
-          cartItems: updatedCartItems,
-          selectedItemIds: itemExistsInCart
-            ? state.selectedItemIds
-            : updatedSelectedItemIds,
-        };
-      });
-    } catch (error) {
-      console.error("Error deleting product to cart:", error);
-    }
+      return {
+        cartItems: updatedCartItems,
+        selectedItemIds: itemExistsInCart
+          ? state.selectedItemIds
+          : updatedSelectedItemIds,
+      };
+    });
   },
 
   removeSelectedItems: async () => {
-    const { account } = useUserStore.getState();
-    const selectedItemIds = get().selectedItemIds;
-    try {
-      await deleteProductFromCart(account.email, selectedItemIds);
+    set((state) => {
+      const updatedCartItems = state.cartItems.filter(
+        (item) => !state.selectedItemIds.includes(item.product.id)
+      );
 
-      set((state) => {
-        const updatedCartItems = state.cartItems.filter(
-          (item) => !state.selectedItemIds.includes(item.product.id)
-        );
-
-        return {
-          cartItems: updatedCartItems,
-          selectedItemIds: [],
-        };
-      });
-    } catch (error) {
-      console.error("Error deleting selected products from cart:", error);
-    }
+      return {
+        cartItems: updatedCartItems,
+        selectedItemIds: [],
+      };
+    });
   },
 
   toggleSelectedItem: (id: number) =>

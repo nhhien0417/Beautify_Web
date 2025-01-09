@@ -19,7 +19,6 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs, { Dayjs } from "dayjs";
 import { useUserStore } from "../../zustand/useUserStore";
-import { updateUserClient } from "../../config/api";
 import { Outlet, useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 
@@ -47,7 +46,7 @@ const StyledTextField = styled(TextField)(({ theme }) => ({
 }));
 
 const EditProfile = () => {
-  const { account, setAccount } = useUserStore();
+  const { account } = useUserStore();
 
   const [formData, setFormData] = useState<{
     name: string;
@@ -139,43 +138,12 @@ const EditProfile = () => {
       return;
     }
 
-    try {
-      let imageFile: File | undefined;
-      if (formData!.image instanceof File) {
-        imageFile = formData!.image;
-      }
-
-      const response = await updateUserClient(
-        account.email,
-        formData!.name,
-        formData!.birthday ? formData!.birthday.toISOString() : "",
-        formData!.phoneNumber,
-        formData!.address,
-        imageFile || new File([], "")
-      );
-
-      setAccount({
-        name: response.data.name,
-        birthday: response.data.birthDay,
-        phoneNumber: response.data.phoneNumber,
-        address: response.data.address,
-        image: response.data.userImage,
-      });
-
-      setSnackbar({
-        open: true,
-        message: "Profile updated successfully!",
-        severity: "success",
-      });
-      setIsChanged(false);
-    } catch (error) {
-      console.error("Error updating profile:", error);
-      setSnackbar({
-        open: true,
-        message: "Update failed. Please try again.",
-        severity: "error",
-      });
-    }
+    setSnackbar({
+      open: true,
+      message: "Profile updated successfully!",
+      severity: "success",
+    });
+    setIsChanged(false);
   };
 
   const handleCloseSnackbar = () => {
